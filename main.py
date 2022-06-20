@@ -22,8 +22,8 @@ def get_input_optimizer(conf, input_img):
 def run_conf(conf):
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    style_img = image_loader(conf.style_image_path)
-    content_img = image_loader(conf.content_image_path)
+    style_img = image_loader(device, conf.style_image_path)
+    content_img = image_loader(device, conf.content_image_path)
     assert style_img.size() == content_img.size(), \
         "we need to import style and content images of the same size"
     imwrite(style_img, name=f"{conf.output_image_name}_style")

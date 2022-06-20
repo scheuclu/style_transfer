@@ -17,7 +17,7 @@ imsize = 800
 
 
 
-def image_loader(image_name):
+def image_loader(device, image_name):
     loader = transforms.Compose([
         transforms.Resize(imsize),  # scale imported image
         transforms.ToTensor()])  # transform it into a torch tensor
