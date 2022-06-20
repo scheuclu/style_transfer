@@ -6,6 +6,8 @@ from model import get_style_model_and_losses
 from conf import standard_configs
 import numpy as np
 
+from torch.optim.lr_scheduler import ReduceLROnPlateau
+
 from writer import write_image
 
 device = get_device()
@@ -56,6 +58,7 @@ def run_conf(conf):
     model.requires_grad_(False)
 
     optimizer = get_input_optimizer(conf, input_img)
+    scheduler = ReduceLROnPlateau(optimizer, 'min', factor=0.2, patience=10)
 
     def closure():
         # correct the values of updated input image
@@ -78,7 +81,7 @@ def run_conf(conf):
 
     for istep in range(conf.numiter):
 
-        total_loss=optimizer.step(closure)
+        total_loss=scheduler.step(closure)
         style_score = sum([a.loss for a in style_losses]) * conf.style_weight
         content_score = sum([a.loss for a in content_losses]) * conf.content_weight
         print(f"style:{style_score} content:{content_score}")
