@@ -13,7 +13,7 @@ conf = standard_configs[0]
 def get_input_optimizer(conf, input_img):
     # this line to show that input is a parameter that requires a gradient
     #optimizer =
-    if conf.optimzer == 'Adam':
+    if conf.optimizer == 'Adam':
         return optim.Adam([input_img])
     else:
         return optim.LBFGS([input_img])
@@ -53,7 +53,7 @@ def run_conf(conf):
     input_img.requires_grad_(True)
     model.requires_grad_(False)
 
-    optimizer = get_input_optimizer(input_img)
+    optimizer = get_input_optimizer(conf, input_img)
 
     def closure():
         # correct the values of updated input image

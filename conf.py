@@ -9,7 +9,7 @@ class StyleTransferConfiguration():
     numiter: int = 100
     writeevery: int = 10
     style_weight: int = 100000
-    content_weight: int = 10,
+    content_weight: int = 10
     content_layers: tuple = ('conv_2', 'conv_3')
     style_layers: tuple  = ('conv_4', 'conv_5')
     optimizer: str = 'Adam'
