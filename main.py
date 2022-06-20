@@ -50,7 +50,9 @@ def run_conf(conf):
             cnn_normalization_mean,
             cnn_normalization_std,
             style_img,
-            content_img)
+            content_img,
+            conf.content_layers,
+            conf.style_layers)
 
     # We want to optimize the input and not the model parameters so we
     # update all the requires_grad fields accordingly

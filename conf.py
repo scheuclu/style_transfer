@@ -80,8 +80,8 @@ standard_configs = [
         style_weight=100000000,
         content_weight=10,
         optimizer='Adam'
-    ),
-    StyleTransferConfiguration(
+    )#,
+    # StyleTransferConfiguration(
     #     content_image_path="./data/images/content/kayleigh_beach1_1200x800.jpg",
     #     style_image_path="./data/images/neural-style/Tate_1200x800.jpg",
     #     output_image_dir="./output",
