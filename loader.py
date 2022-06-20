@@ -7,7 +7,8 @@ import torch
 
 
 def get_device():
-    return torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    return torch.device("cuda")
+    #return torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print("device", device)
     # desired size of the output image
 

@@ -94,6 +94,9 @@ def run_conf(conf):
 
     print(input_img)
 
-
-run_conf(standard_configs[0])
+for conf in standard_configs:
+    try:
+        run_conf(conf)
+    except:
+        pass
 

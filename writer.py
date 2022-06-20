@@ -14,6 +14,7 @@ def write_image(tensor, folder, filename):
     save_image(tensor, f"{filename}.jpg")
     blob.upload_from_filename(f"{filename}.jpg")
     os.remove(f"{filename}.jpg")
+    print(f"Wrote {filename}.jpg")
     # with blob.open('wb') as f:
     #     save_image(tensor, f.)
 
