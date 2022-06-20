@@ -58,8 +58,7 @@ def run_conf(conf):
     model.requires_grad_(False)
 
     optimizer = get_input_optimizer(conf, input_img)
-    scheduler = ReduceLROnPlateau(optimizer, 'min', factor=0.2, patience=10)
-
+    
     def closure():
         # correct the values of updated input image
         with torch.no_grad():
@@ -77,11 +76,13 @@ def run_conf(conf):
         loss = style_score + content_score
         loss.backward()
 
-        return style_score + content_score
+        return loss
 
+    last_total_loss=1e10
     for istep in range(conf.numiter):
 
-        total_loss=scheduler.step(closure)
+        total_loss=optimizer.step(closure)
+        #scheduler.step()
         style_score = sum([a.loss for a in style_losses]) * conf.style_weight
         content_score = sum([a.loss for a in content_losses]) * conf.content_weight
         print(f"style:{style_score} content:{content_score}")
@@ -90,6 +91,13 @@ def run_conf(conf):
         if istep % conf.writeevery == 0:
             #imwrite(input_img, name=f"{conf.output_image_name}_step{istep}")
             write_image(input_img, f"{conf.output_image_name}", f"step_{istep}")
+
+        if istep % 30 == 0:
+            if total_loss>last_total_loss:
+                for g in optimizer.param_groups:
+                    g['lr'] =  g['lr']*0.2
+                    print("Reduced learning rate")
+            last_total_loss=total_loss
 
     # a last correction...
     with torch.no_grad():
