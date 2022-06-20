@@ -38,9 +38,9 @@ def run_conf(conf):
     cnn_normalization_mean = torch.tensor([0.485, 0.456, 0.406]).to(device)
     cnn_normalization_std = torch.tensor([0.229, 0.224, 0.225]).to(device)
 
-    input_img = content_img.clone()
-    # input_img = content_img.clone()+torch.Tensor(np.random.random(size=content_img.shape)).to(device)*0.1
-    # input_img=input_img/input_img.max()
+    #input_img = content_img.clone()
+    input_img = content_img.clone()+torch.Tensor(np.random.random(size=content_img.shape)).to(device)*0.1
+    input_img=input_img/input_img.max()
 
 
     model, style_losses, content_losses = \

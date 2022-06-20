@@ -67,8 +67,8 @@ def get_style_model_and_losses(device,
                                normalization_std,
                                style_img,
                                content_img,
-                               content_layers=content_layers_default,
-                               style_layers=style_layers_default):
+                               content_layers,
+                               style_layers):
     # normalization module
     normalization = Normalization(normalization_mean, normalization_std).to(device)
 

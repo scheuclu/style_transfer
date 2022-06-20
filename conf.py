@@ -64,7 +64,7 @@ standard_configs = [
         writeevery=20,
         content_layers=('conv_2', 'conv_3'),
         style_layers=('conv_4', 'conv_5'),
-        style_weight=100000000,
+        style_weight=1000000,
         content_weight=10,
         optimizer='Adam'
     ),
@@ -77,48 +77,48 @@ standard_configs = [
         writeevery=20,
         content_layers=('conv_2', 'conv_3'),
         style_layers=('conv_3', 'conv_4', 'conv_5'),
+        style_weight=1000000,
+        content_weight=10,
+        optimizer='Adam'
+    ),
+    StyleTransferConfiguration(
+        content_image_path="./data/images/content/kayleigh_beach1_1200x800.jpg",
+        style_image_path="./data/images/neural-style/Tate_1200x800.jpg",
+        output_image_dir="./output",
+        output_image_name="k_tate_1x",
+        numiter=500,
+        writeevery=10,
+        content_layers=('conv_2', 'conv_3'),
+        style_layers=('conv_4', 'conv_5'),
+        style_weight=1000000,
+        content_weight=1,
+        optimizer='LBFGS'
+    ),
+    StyleTransferConfiguration(
+        content_image_path="./data/images/content/kayleigh_beach1_1200x800.jpg",
+        style_image_path="./data/images/neural-style/Tate_1200x800.jpg",
+        output_image_dir="./output",
+        output_image_name="k_tate_2x",
+        numiter=500,
+        writeevery=10,
+        content_layers=('conv_2', 'conv_3' 'conv_4'),
+        style_layers=('conv_3', 'conv_4', 'conv_5'),
+        style_weight=1000000,
+        content_weight=10,
+        optimizer='LBFGS'
+    ),
+    StyleTransferConfiguration(
+        content_image_path="./data/images/content/kayleigh_beach1_1200x800.jpg",
+        style_image_path="./data/images/neural-style/Tate_1200x800.jpg",
+        output_image_dir="./output",
+        output_image_name="k_tate_3x",
+        numiter=5000,
+        writeevery=20,
+        content_layers=('conv_2', 'conv_3'),
+        style_layers=('conv_4', 'conv_5'),
         style_weight=100000000,
         content_weight=10,
         optimizer='Adam'
-    )#,
-    # StyleTransferConfiguration(
-    #     content_image_path="./data/images/content/kayleigh_beach1_1200x800.jpg",
-    #     style_image_path="./data/images/neural-style/Tate_1200x800.jpg",
-    #     output_image_dir="./output",
-    #     output_image_name="k_tate_1",
-    #     numiter=500,
-    #     writeevery=10,
-    #     content_layers=('conv_2', 'conv_3'),
-    #     style_layers=('conv_4', 'conv_5'),
-    #     style_weight=1000000,
-    #     content_weight=1,
-    #     optimizer='LBFGS'
-    # )
-    # StyleTransferConfiguration(
-    #     content_image_path="./data/images/content/kayleigh_beach1_1200x800.jpg",
-    #     style_image_path="./data/images/neural-style/Tate_1200x800.jpg",
-    #     output_image_dir="./output",
-    #     output_image_name="k_tate_2",
-    #     numiter=500,
-    #     writeevery=10,
-    #     content_layers=('conv_2', 'conv_3' 'conv_4'),
-    #     style_layers=('conv_3', 'conv_4', 'conv_5'),
-    #     style_weight=1000000,
-    #     content_weight=10,
-    #     optimizer='LBFGS'
-    # ),
-    # StyleTransferConfiguration(
-    #     content_image_path="./data/images/content/kayleigh_beach1_1200x800.jpg",
-    #     style_image_path="./data/images/neural-style/Tate_1200x800.jpg",
-    #     output_image_dir="./output",
-    #     output_image_name="k_tate_3",
-    #     numiter=5000,
-    #     writeevery=20,
-    #     content_layers=('conv_2', 'conv_3'),
-    #     style_layers=('conv_4', 'conv_5'),
-    #     style_weight=100000000,
-    #     content_weight=10,
-    #     optimizer='Adam'
-    # )
+    )
 ]
 
