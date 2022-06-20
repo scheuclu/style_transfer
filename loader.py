@@ -5,10 +5,14 @@ import torchvision.transforms as transforms
 import torch
 
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-print("device", device)
-# desired size of the output image
-imsize = 512 if torch.cuda.is_available() else 128  # use small size if no gpu
+
+def get_device():
+    return torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    print("device", device)
+    # desired size of the output image
+
+
+###imsize = 512 if torch.cuda.is_available() else 128  # use small size if no gpu
 imsize = 800
 
 

@@ -1,4 +1,4 @@
-from loader import image_loader
+from loader import image_loader, get_device
 import torch
 import torch.optim as optim
 import torchvision.models as models
@@ -7,7 +7,7 @@ from utils import imshow, imwrite
 from conf import standard_configs
 import numpy as np
 
-
+device = get_device()
 conf = standard_configs[0]
 
 def get_input_optimizer(conf, input_img):
@@ -34,9 +34,8 @@ def run_conf(conf):
     cnn_normalization_std = torch.tensor([0.229, 0.224, 0.225]).to(device)
 
     input_img = content_img.clone()
-
-    input_img = content_img.clone()+torch.Tensor(np.random.random(size=content_img.shape))*0.1
-    input_img=input_img/input_img.max()
+    # input_img = content_img.clone()+torch.Tensor(np.random.random(size=content_img.shape)).to(device)*0.1
+    # input_img=input_img/input_img.max()
 
 
     model, style_losses, content_losses = \
