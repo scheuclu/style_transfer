@@ -11,15 +11,15 @@ from torch.optim.lr_scheduler import ReduceLROnPlateau
 from writer import write_image
 
 device = get_device()
-conf = standard_configs[0]
+print("device", device)
 
 def get_input_optimizer(conf, input_img):
     # this line to show that input is a parameter that requires a gradient
     #optimizer =
     if conf.optimizer == 'Adam':
-        return optim.Adam([input_img])
+        return optim.Adam([input_img], lr=0.2)
     else:
-        return optim.LBFGS([input_img])
+        return optim.LBFGS([input_img], lr=0.1)
 
 
 def run_conf(conf):
@@ -58,7 +58,7 @@ def run_conf(conf):
     model.requires_grad_(False)
 
     optimizer = get_input_optimizer(conf, input_img)
-    
+
     def closure():
         # correct the values of updated input image
         with torch.no_grad():
@@ -92,7 +92,7 @@ def run_conf(conf):
             #imwrite(input_img, name=f"{conf.output_image_name}_step{istep}")
             write_image(input_img, f"{conf.output_image_name}", f"step_{istep}")
 
-        if istep % 30 == 0:
+        if istep % 20 == 0:
             if total_loss>last_total_loss:
                 for g in optimizer.param_groups:
                     g['lr'] =  g['lr']*0.2
@@ -105,9 +105,10 @@ def run_conf(conf):
 
     print(input_img)
 
-for conf in standard_configs:
+for conf in reversed(standard_configs):
     try:
         run_conf(conf)
     except:
+        print("Failed to run config")
         pass
 
