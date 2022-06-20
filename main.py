@@ -3,9 +3,10 @@ import torch
 import torch.optim as optim
 import torchvision.models as models
 from model import get_style_model_and_losses
-from utils import imshow, imwrite
 from conf import standard_configs
 import numpy as np
+
+from writer import write_image
 
 device = get_device()
 conf = standard_configs[0]
@@ -26,8 +27,10 @@ def run_conf(conf):
     content_img = image_loader(device, conf.content_image_path)
     assert style_img.size() == content_img.size(), \
         "we need to import style and content images of the same size"
-    imwrite(style_img, name=f"{conf.output_image_name}_style")
-    imwrite(content_img, name=f"{conf.output_image_name}_content")
+    write_image(style_img, f"{conf.output_image_name}", "style")
+    write_image(content_img, f"{conf.output_image_name}", "content")
+    # imwrite(style_img, name=f"{conf.output_image_name}_style")
+    # imwrite(content_img, name=f"{conf.output_image_name}_content")
 
     cnn = models.vgg19(pretrained=True).features.to(device).eval()
     cnn_normalization_mean = torch.tensor([0.485, 0.456, 0.406]).to(device)
@@ -82,7 +85,8 @@ def run_conf(conf):
         print(f'total loss: {total_loss}')
 
         if istep % conf.writeevery == 0:
-            imwrite(input_img, name=f"{conf.output_image_name}_step{istep}")
+            #imwrite(input_img, name=f"{conf.output_image_name}_step{istep}")
+            write_image(input_img, f"{conf.output_image_name}", f"step_{istep}")
 
     # a last correction...
     with torch.no_grad():
