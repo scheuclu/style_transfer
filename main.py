@@ -3,7 +3,7 @@ import torch
 import torch.optim as optim
 import torchvision.models as models
 from model import get_style_model_and_losses
-from conf import standard_configs, scream_configs, gogh_configs, klimt_configs, mona_configs, wood_configs
+from conf import standard_configs, scream_configs, gogh_configs, klimt_configs, mona_configs, wood_configs, tate_configs
 import numpy as np
 
 from torch.optim.lr_scheduler import ReduceLROnPlateau
@@ -102,8 +102,9 @@ def run_conf(conf):
                     print("Reduced learning rate")
             # Increase learning rate if the loss drops very slowly
             if total_loss<last_total_loss and total_loss>last_total_loss*0.95:
-                g['lr'] = g['lr'] * 2.0
-                print("Increased learning rate")
+                for g in optimizer.param_groups:
+                    g['lr'] = g['lr'] * 2.0
+                    print("Increased learning rate")
             last_total_loss=total_loss
 
     # a last correction...
@@ -112,7 +113,7 @@ def run_conf(conf):
 
     write_image(input_img, f"{conf.output_image_name}", f"final")
 
-for conf in reversed(wood_configs):
+for conf in tate_configs+wood_configs:
     # try:
         run_conf(conf)
     # except:
