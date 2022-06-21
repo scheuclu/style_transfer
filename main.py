@@ -85,10 +85,10 @@ def run_conf(conf):
 
         total_loss=optimizer.step(closure)
         #scheduler.step()
-        style_score = round(sum([a.loss for a in style_losses]) * conf.style_weight,2)
-        content_score = round(sum([a.loss for a in content_losses]) * conf.content_weight,2)
+        style_score = sum([a.loss for a in style_losses]) * conf.style_weight
+        content_score = sum([a.loss for a in content_losses]) * conf.content_weight
         print(f"style:{style_score} content:{content_score}")
-        print(f'total loss: {round(total_loss,2)}')
+        print(f'total loss: {total_loss}')
 
         if istep % conf.writeevery == 0:
             write_image(input_img, f"{conf.output_image_name}", f"step_{istep}")
