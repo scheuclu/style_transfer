@@ -105,7 +105,7 @@ def run_conf(conf):
     with torch.no_grad():
         input_img.clamp_(0, 1)
 
-    print(input_img)
+    write_image(input_img, f"{conf.output_image_name}", f"final")
 
 for conf in reversed(scream_configs):
     try:
