@@ -3,7 +3,7 @@ import torch
 import torch.optim as optim
 import torchvision.models as models
 from model import get_style_model_and_losses
-from conf import standard_configs
+from conf import standard_configs, corrected_configs
 import numpy as np
 
 from torch.optim.lr_scheduler import ReduceLROnPlateau
@@ -107,7 +107,7 @@ def run_conf(conf):
 
     print(input_img)
 
-for conf in reversed(standard_configs):
+for conf in reversed(corrected_configs_configs):
     try:
         run_conf(conf)
     except:

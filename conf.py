@@ -226,3 +226,136 @@ standard_configs = [
     )
 ]
 
+corrected_configs = [
+    StyleTransferConfiguration(
+        content_image_path="./data/images/content/couple.jpg",
+        style_image_path="./data/images/neural-style/Tate_1200x800.jpg",
+        output_image_dir="./output",
+        output_image_name="couple_tate_5",
+        numiter=500,
+        writeevery=10,
+        content_layers=('conv_3', 'conv_4'),
+        style_layers=('conv_3', 'conv_4'),
+        style_weight=1000000,
+        content_weight=10,
+        optimizer='LBFGS'
+    ),
+    StyleTransferConfiguration(
+        content_image_path="./data/images/content/couple.jpg",
+        style_image_path="./data/images/neural-style/scream_1200x800.jpg",
+        output_image_dir="./output",
+        output_image_name="couple_scream_1",
+        numiter=500,
+        writeevery=10,
+        content_layers=('conv_2', 'conv_3', 'conv_4'),
+        style_layers=('conv_3', 'conv_4', 'conv_5'),
+        style_weight=1000000,
+        content_weight=10,
+        optimizer='LBFGS'
+    ),
+    StyleTransferConfiguration(
+        content_image_path="./data/images/content/couple.jpg",
+        style_image_path="./data/images/neural-style/scream_1200x800.jpg",
+        output_image_dir="./output",
+        output_image_name="couple_scream_2",
+        numiter=500,
+        writeevery=10,
+        content_layers=('conv_2', 'conv_3'),
+        style_layers=('conv_4', 'conv_5'),
+        style_weight=10000000,
+        content_weight=10,
+        optimizer='LBFGS'
+    ),
+    StyleTransferConfiguration(
+        content_image_path="./data/images/content/couple.jpg",
+        style_image_path="./data/images/neural-style/scream_1200x800.jpg",
+        output_image_dir="./output",
+        output_image_name="couple_scream_3",
+        numiter=500,
+        writeevery=10,
+        content_layers=('conv_3', 'conv_4'),
+        style_layers=('conv_3', 'conv_4'),
+        style_weight=1000000,
+        content_weight=10,
+        optimizer='LBFGS'
+    ),
+    StyleTransferConfiguration(
+        content_image_path="./data/images/content/couple.jpg",
+        style_image_path="./data/images/neural-style/scream_1200x800.jpg",
+        output_image_dir="./output",
+        output_image_name="couple_scream_4",
+        numiter=500,
+        writeevery=10,
+        content_layers=('conv_2', 'conv_3', 'conv_4'),
+        style_layers=('conv_5'),
+        style_weight=1000000,
+        content_weight=10,
+        optimizer='LBFGS'
+    ),
+    StyleTransferConfiguration(
+        content_image_path="./data/images/content/kayleigh_beach1_1200x800.jpg",
+        style_image_path="./data/images/neural-style/Tate_1200x800.jpg",
+        output_image_dir="./output",
+        output_image_name="k_tate_5",
+        numiter=500,
+        writeevery=10,
+        content_layers=('conv_3', 'conv_4'),
+        style_layers=('conv_3', 'conv_4'),
+        style_weight=1000000,
+        content_weight=10,
+        optimizer='LBFGS'
+    ),
+    StyleTransferConfiguration(
+        content_image_path="./data/images/content/kayleigh_beach1_1200x800.jpg",
+        style_image_path="./data/images/neural-style/scream_1200x800.jpg",
+        output_image_dir="./output",
+        output_image_name="k_scream_1",
+        numiter=500,
+        writeevery=10,
+        content_layers=('conv_2', 'conv_3', 'conv_4'),
+        style_layers=('conv_3', 'conv_4', 'conv_5'),
+        style_weight=1000000,
+        content_weight=10,
+        optimizer='LBFGS'
+    ),
+    StyleTransferConfiguration(
+        content_image_path="./data/images/content/kayleigh_beach1_1200x800.jpg",
+        style_image_path="./data/images/neural-style/scream_1200x800.jpg",
+        output_image_dir="./output",
+        output_image_name="k_scream_2",
+        numiter=500,
+        writeevery=10,
+        content_layers=('conv_2', 'conv_3'),
+        style_layers=('conv_4', 'conv_5'),
+        style_weight=10000000,
+        content_weight=10,
+        optimizer='LBFGS'
+    ),
+    StyleTransferConfiguration(
+        content_image_path="./data/images/content/kayleigh_beach1_1200x800.jpg",
+        style_image_path="./data/images/neural-style/scream_1200x800.jpg",
+        output_image_dir="./output",
+        output_image_name="k_scream_3",
+        numiter=500,
+        writeevery=10,
+        content_layers=('conv_3', 'conv_4'),
+        style_layers=('conv_3', 'conv_4'),
+        style_weight=1000000,
+        content_weight=10,
+        optimizer='LBFGS'
+    ),
+    StyleTransferConfiguration(
+        content_image_path="./data/images/content/kayleigh_beach1_1200x800.jpg",
+        style_image_path="./data/images/neural-style/scream_1200x800.jpg",
+        output_image_dir="./output",
+        output_image_name="k_scream_4",
+        numiter=500,
+        writeevery=10,
+        content_layers=('conv_2', 'conv_3', 'conv_4'),
+        style_layers=('conv_5'),
+        style_weight=1000000,
+        content_weight=10,
+        optimizer='LBFGS'
+    )
+]
+
