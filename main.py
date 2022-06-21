@@ -29,8 +29,8 @@ def run_conf(conf):
     content_img = image_loader(device, conf.content_image_path)
     assert style_img.size() == content_img.size(), \
         "we need to import style and content images of the same size"
-    write_image(style_img, f"{conf.output_image_name}", "style")
-    write_image(content_img, f"{conf.output_image_name}", "content")
+    ###write_image(style_img, f"{conf.output_image_name}", "style")
+    ###write_image(content_img, f"{conf.output_image_name}", "content")
     # imwrite(style_img, name=f"{conf.output_image_name}_style")
     # imwrite(content_img, name=f"{conf.output_image_name}_content")
 
@@ -85,20 +85,25 @@ def run_conf(conf):
 
         total_loss=optimizer.step(closure)
         #scheduler.step()
-        style_score = sum([a.loss for a in style_losses]) * conf.style_weight
-        content_score = sum([a.loss for a in content_losses]) * conf.content_weight
+        style_score = round(sum([a.loss for a in style_losses]) * conf.style_weight,2)
+        content_score = round(sum([a.loss for a in content_losses]) * conf.content_weight,2)
         print(f"style:{style_score} content:{content_score}")
-        print(f'total loss: {total_loss}')
+        print(f'total loss: {round(total_loss,2)}')
 
         if istep % conf.writeevery == 0:
-            #imwrite(input_img, name=f"{conf.output_image_name}_step{istep}")
             write_image(input_img, f"{conf.output_image_name}", f"step_{istep}")
 
+        # Adaptive learning rate
         if istep % 20 == 0:
+            # decrease learning rate if the loss increases
             if total_loss>last_total_loss:
                 for g in optimizer.param_groups:
                     g['lr'] =  g['lr']*0.2
                     print("Reduced learning rate")
+            # Increase learning rate if the loss drops very slowly
+            if total_loss<last_total_loss and total_loss>last_total_loss*0.95:
+                g['lr'] = g['lr'] * 2.0
+                print("Increased learning rate")
             last_total_loss=total_loss
 
     # a last correction...
@@ -108,9 +113,9 @@ def run_conf(conf):
     write_image(input_img, f"{conf.output_image_name}", f"final")
 
 for conf in reversed(scream_configs):
-    try:
+    # try:
         run_conf(conf)
-    except:
-        print("Failed to run config")
-        pass
+    # except:
+    #     print("Failed to run config")
+    #     pass
 
