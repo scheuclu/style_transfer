@@ -3,7 +3,7 @@ import torch
 import torch.optim as optim
 import torchvision.models as models
 from model import get_style_model_and_losses
-from conf import standard_configs, scream_configs, gogh_configs, klimt_configs, mona_configs, wood_configs, tate_configs
+from conf import standard_configs, scream_configs, gogh_configs, klimt_configs, mona_configs, wood_configs, tate_configs, config_gen
 import numpy as np
 
 from torch.optim.lr_scheduler import ReduceLROnPlateau
@@ -113,7 +113,15 @@ def run_conf(conf):
 
     write_image(input_img, f"{conf.output_image_name}", f"final")
 
-for conf in tate_configs+wood_configs:
+
+configs = config_gen(
+        content_image_path="./data/images/content/kayleigh_beach1_1200x800.jpg",
+        style_image_path="./data/images/neural-style/scream_1200x800.jpg",
+        output_image_name="k_scream")+config_gen(
+                content_image_path="./data/images/content/kayleigh_beach1_1200x800.jpg",
+                style_image_path="./data/images/neural-style/wood1_1200x800.jpg",
+                output_image_name="k_wood1")
+for conf in configs:
     # try:
         run_conf(conf)
     # except:

@@ -15,6 +15,65 @@ class StyleTransferConfiguration():
     optimizer: str = 'LBFGS'
 
 
+
+def config_gen(
+        content_image_path="./data/images/content/kayleigh_beach1_1200x800.jpg",
+        style_image_path="./data/images/neural-style/mona_1200x800.jpg",
+        output_image_name="k_mona_1"):
+    return [
+    StyleTransferConfiguration(
+        content_image_path=content_image_path,
+        style_image_path=style_image_path,
+        output_image_dir="./output",
+        output_image_name=f"{output_image_name}_1",
+        numiter=200,
+        writeevery=5,
+        content_layers=('conv_12', 'conv_14'),
+        style_layers=('conv_5'),
+        style_weight=1000000,
+        content_weight=10,
+        optimizer='LBFGS'
+    ),
+    StyleTransferConfiguration(
+        content_image_path=content_image_path,
+        style_image_path=style_image_path,
+        output_image_dir="./output",
+        output_image_name=f"{output_image_name}_2",
+        numiter=200,
+        writeevery=5,
+        content_layers=('conv_12'),
+        style_layers=('conv_4'),
+        style_weight=10000000,
+        content_weight=10,
+        optimizer='LBFGS'
+    ),
+    StyleTransferConfiguration(
+        content_image_path=content_image_path,
+        style_image_path=style_image_path,
+        output_image_dir="./output",
+        output_image_name=f"{output_image_name}_3",
+        numiter=200,
+        writeevery=5,
+        content_layers=('conv_15', 'conv_16'),
+        style_layers=('conv_2', 'conv_8'),
+        style_weight=1000000,
+        content_weight=10,
+        optimizer='LBFGS'
+    ),
+    StyleTransferConfiguration(
+        content_image_path=content_image_path,
+        style_image_path=style_image_path,
+        output_image_dir="./output",
+        output_image_name=f"{output_image_name}_4",
+        numiter=200,
+        writeevery=5,
+        content_layers=('conv_15', 'conv_16'),
+        style_layers=('conv_2', 'conv_10'),
+        style_weight=1000000,
+        content_weight=10,
+        optimizer='LBFGS'
+    )]
+
 standard_configs = [
     StyleTransferConfiguration(
         content_image_path="./data/images/content/kayleigh_beach1_1200x800.jpg",
