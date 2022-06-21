@@ -578,4 +578,111 @@ klimt_configs = [
     )
 ]
 
+mona_configs = [
+    StyleTransferConfiguration(
+        content_image_path="./data/images/content/couple.jpg",
+        style_image_path="./data/images/neural-style/mona_1200x800.jpg",
+        output_image_dir="./output",
+        output_image_name="couple_mona_1",
+        numiter=200,
+        writeevery=10,
+        content_layers=('conv_9', 'conv_14'),
+        style_layers=('conv_5', 'conv_5'),
+        style_weight=1000000,
+        content_weight=10,
+        optimizer='LBFGS'
+    ),
+    StyleTransferConfiguration(
+        content_image_path="./data/images/content/couple.jpg",
+        style_image_path="./data/images/neural-style/mona_1200x800.jpg",
+        output_image_dir="./output",
+        output_image_name="couple_mona_2",
+        numiter=200,
+        writeevery=10,
+        content_layers=('conv_13', 'conv_14'),
+        style_layers=('conv_2', 'conv_4', 'conv_8'),
+        style_weight=10000000,
+        content_weight=10,
+        optimizer='LBFGS'
+    ),
+    StyleTransferConfiguration(
+        content_image_path="./data/images/content/couple.jpg",
+        style_image_path="./data/images/neural-style/mona_1200x800.jpg",
+        output_image_dir="./output",
+        output_image_name="couple_mona_3",
+        numiter=200,
+        writeevery=5,
+        content_layers=('conv_15', 'conv_10'),
+        style_layers=('conv_7', 'conv_6'),
+        style_weight=1000000,
+        content_weight=10,
+        optimizer='LBFGS'
+    ),
+    StyleTransferConfiguration(
+        content_image_path="./data/images/content/couple.jpg",
+        style_image_path="./data/images/neural-style/mona_1200x800.jpg",
+        output_image_dir="./output",
+        output_image_name="couple_mona_4",
+        numiter=200,
+        writeevery=5,
+        content_layers=('conv_15', 'conv_16'),
+        style_layers=('conv_2', 'conv_6'),
+        style_weight=1000000,
+        content_weight=10,
+        optimizer='LBFGS'
+    ),
+    StyleTransferConfiguration(
+        content_image_path="./data/images/content/kayleigh_beach1_1200x800.jpg",
+        style_image_path="./data/images/neural-style/mona_1200x800.jpg",
+        output_image_dir="./output",
+        output_image_name="k_mona_1",
+        numiter=200,
+        writeevery=5,
+        content_layers=('conv_12', 'conv_14'),
+        style_layers=('conv_5'),
+        style_weight=1000000,
+        content_weight=10,
+        optimizer='LBFGS'
+    ),
+    StyleTransferConfiguration(
+        content_image_path="./data/images/content/kayleigh_beach1_1200x800.jpg",
+        style_image_path="./data/images/neural-style/mona_1200x800.jpg",
+        output_image_dir="./output",
+        output_image_name="k_mona_2",
+        numiter=200,
+        writeevery=5,
+        content_layers=('conv_12'),
+        style_layers=('conv_4'),
+        style_weight=10000000,
+        content_weight=10,
+        optimizer='LBFGS'
+    ),
+    StyleTransferConfiguration(
+        content_image_path="./data/images/content/kayleigh_beach1_1200x800.jpg",
+        style_image_path="./data/images/neural-style/mona_1200x800.jpg",
+        output_image_dir="./output",
+        output_image_name="k_mona_3",
+        numiter=200,
+        writeevery=5,
+        content_layers=('conv_15', 'conv_16'),
+        style_layers=('conv_2', 'conv_8'),
+        style_weight=1000000,
+        content_weight=10,
+        optimizer='LBFGS'
+    ),
+    StyleTransferConfiguration(
+        content_image_path="./data/images/content/kayleigh_beach1_1200x800.jpg",
+        style_image_path="./data/images/neural-style/mona_1200x800.jpg",
+        output_image_dir="./output",
+        output_image_name="k_mona_4",
+        numiter=200,
+        writeevery=5,
+        content_layers=('conv_15', 'conv_16'),
+        style_layers=('conv_2', 'conv_10'),
+        style_weight=1000000,
+        content_weight=10,
+        optimizer='LBFGS'
+    )
+]
+
 

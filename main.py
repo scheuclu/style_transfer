@@ -3,7 +3,7 @@ import torch
 import torch.optim as optim
 import torchvision.models as models
 from model import get_style_model_and_losses
-from conf import standard_configs, scream_configs, gogh_configs, klimt_configs
+from conf import standard_configs, scream_configs, gogh_configs, klimt_configs, mona_configs
 import numpy as np
 
 from torch.optim.lr_scheduler import ReduceLROnPlateau
@@ -112,7 +112,7 @@ def run_conf(conf):
 
     write_image(input_img, f"{conf.output_image_name}", f"final")
 
-for conf in reversed(klimt_configs):
+for conf in reversed(mona_configs):
     # try:
         run_conf(conf)
     # except:
