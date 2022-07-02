@@ -54,7 +54,7 @@ def config_gen(
         content_image_path="./data/images/content/kayleigh_beach1_1200x800.jpg",
         style_image_path="./data/images/neural-style/mona_1200x800.jpg",
         output_image_name="k_mona_1"):
-    NUMITER=500
+    NUMITER=200
     return [
     StyleTransferConfiguration(
         content_image_path=content_image_path,
@@ -121,20 +121,6 @@ def config_gen(
         writeevery=5,
         content_layers=[f'conv_{i}' for i in range(4,17)],
         style_layers=[f'conv_{i}' for i in range(4,17)],
-        style_weight=10000000,
-        content_weight=10,
-        optimizer='LBFGS',
-        reduceevery=40
-    ),
-    StyleTransferConfiguration(
-        content_image_path=content_image_path,
-        style_image_path=style_image_path,
-        output_image_dir="./output",
-        output_image_name=f"{output_image_name}_6",
-        numiter=NUMITER,
-        writeevery=5,
-        content_layers=('conv_15', 'conv_1'),
-        style_layers=('conv_12', 'conv_10'),
         style_weight=10000000,
         content_weight=10,
         optimizer='LBFGS',
