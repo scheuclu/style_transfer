@@ -33,11 +33,7 @@ def run_conf(conf):
     cnn_normalization_std = torch.tensor([0.229, 0.224, 0.225]).to(device)
 
     # Initialize with a bit of noise
-    input_img = content_img.clone()+torch.Tensor(np.random.random(size=content_img.shape)).to(device)*0.1
-    input_img=input_img/input_img.max()
-
-    input_img = torch.Tensor(np.ones(shape=content_img.shape)).to(device) * 0.5
-    input_img[:,:,500,500]=1
+    input_img = content_img.clone().to(device)
 
 
 
@@ -131,8 +127,8 @@ conf1=configs.StyleTransferConfiguration(
         output_image_name=f"something",
         numiter=2000,
         writeevery=5,
-        content_layers=('conv_8', 'conv_14'),
-        style_layers=('conv_12'),
+        content_layers=[f'conv_{i}' for i in range(1,17)],
+        style_layers=[f'conv_{i}' for i in range(1,17)],
         style_weight=1000000,
         content_weight=100,
         optimizer='Adam',
