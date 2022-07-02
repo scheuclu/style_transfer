@@ -110,7 +110,7 @@ def run_conf(conf):
 generated_configs = configs.config_gen(
         content_image_path="./data/images/content/edritz_1200x800.jpg",
         style_image_path="./data/images/neural-style/psy1_1200x800.jpg",
-        output_image_name="k_psy")
+        output_image_name="edritz_psy")
 
 for conf in generated_configs:
     run_conf(conf)
