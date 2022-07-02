@@ -112,7 +112,7 @@ generated_configs = configs.config_gen(
         style_image_path="./data/images/neural-style/psy1_1200x800.jpg",
         output_image_name="edritz_psy")
 
-for conf in generated_configs:
+for conf in reversed(generated_configs):
     run_conf(conf)
 
 
