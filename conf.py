@@ -1,4 +1,6 @@
+import random
 from dataclasses import dataclass
+import itertools as it
 
 @dataclass
 class StyleTransferConfiguration():
@@ -14,6 +16,40 @@ class StyleTransferConfiguration():
     style_layers: tuple  = ('conv_4', 'conv_5')
     optimizer: str = 'LBFGS'
 
+
+
+
+
+def config_explore(content_image_path="./data/images/content/kayleigh_beach1_1200x800.jpg",
+        style_image_path="./data/images/neural-style/Tate_1200x800.jpg"):
+    configs = []
+    style_weights=[1e5, 1e7]
+    content_weights=[1, 100]
+    layers=[f'conv_{i}' for i in range(1,17)]
+
+
+    t = list(it.product(layers, layers))
+    random.shuffle(t)
+
+    confs = []
+    for content_layer, style_layer in t:
+
+        c = StyleTransferConfiguration(
+            content_image_path=content_image_path,
+            style_image_path=style_image_path,
+            output_image_dir="./output",
+            output_image_name=f"explore/{content_layer}_{style_layer}",
+            numiter=11,
+            writeevery=5,
+            content_layers=[content_layer],
+            style_layers=[style_layer],
+            style_weight=1000000,
+            content_weight=10,
+            optimizer='LBFGS'
+        )
+        confs.append(c)
+
+    return confs
 
 
 def config_gen(

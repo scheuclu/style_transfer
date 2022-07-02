@@ -3,7 +3,7 @@ import torch
 import torch.optim as optim
 import torchvision.models as models
 from model import get_style_model_and_losses
-import conf
+import conf as configs
 import numpy as np
 
 from writer import write_image
@@ -17,6 +17,8 @@ def get_input_optimizer(conf, input_img):
         return optim.Adam([input_img], lr=0.2)
     else:
         return optim.LBFGS([input_img], lr=0.1)
+
+
 
 
 def run_conf(conf):
@@ -104,13 +106,14 @@ def run_conf(conf):
     write_image(input_img, f"{conf.output_image_name}", f"final")
 
 
-configs = conf.config_gen(
-        content_image_path="./data/images/content/kayleigh_beach1_1200x800.jpg",
-        style_image_path="./data/images/neural-style/scream_1200x800.jpg",
-        output_image_name="k_scream")+conf.config_gen(
-                content_image_path="./data/images/content/kayleigh_beach1_1200x800.jpg",
-                style_image_path="./data/images/neural-style/wood1_1200x800.jpg",
-                output_image_name="k_wood1")
+# configs = configs.config_gen(
+#         content_image_path="./data/images/content/kayleigh_beach1_1200x800.jpg",
+#         style_image_path="./data/images/neural-style/scream_1200x800.jpg",
+#         output_image_name="k_scream")+configs.config_gen(
+#                 content_image_path="./data/images/content/kayleigh_beach1_1200x800.jpg",
+#                 style_image_path="./data/images/neural-style/wood1_1200x800.jpg",
+#                 output_image_name="k_wood1")
+todo_confs = configs.config_explore()
 
-for conf in configs:
+for conf in todo_confs:
     run_conf(conf)
