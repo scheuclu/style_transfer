@@ -87,17 +87,17 @@ def run_conf(conf):
             write_image(input_img, f"{conf.output_image_name}", f"step_{istep}")
 
         # Adaptive learning rate
-        if istep % 20 == 0:
+        if istep % conf.reduceevery == 0:
             # decrease learning rate if the loss increases
-            if total_loss>last_total_loss:
+            if total_loss>last_total_loss*0.98:
                 for g in optimizer.param_groups:
                     g['lr'] =  g['lr']*0.2
                     print("Reduced learning rate")
-            # Increase learning rate if the loss drops very slowly
-            if total_loss<last_total_loss and total_loss>last_total_loss*0.95:
-                for g in optimizer.param_groups:
-                    g['lr'] = g['lr'] * 2.0
-                    print("Increased learning rate")
+            # # Increase learning rate if the loss drops very slowly
+            # if total_loss<last_total_loss and total_loss>last_total_loss*0.99:
+            #     for g in optimizer.param_groups:
+            #         g['lr'] = g['lr'] * 2.0
+            #         print("Increased learning rate")
             last_total_loss=total_loss
 
     # a last correction...
@@ -122,7 +122,7 @@ def run_conf(conf):
 
 conf1=configs.StyleTransferConfiguration(
         content_image_path="./data/images/content/kayleigh_beach1_1200x800.jpg",
-        style_image_path="./data/images/neural-style/Tate_1200x800.jpg",
+        style_image_path="./data/images/neural-style/sturmtruppe_1200x800.jpg",
         output_image_dir="./output",
         output_image_name=f"something",
         numiter=2000,
