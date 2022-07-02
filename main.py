@@ -16,7 +16,7 @@ def get_input_optimizer(conf, input_img):
     if conf.optimizer == 'Adam':
         return optim.Adam([input_img], lr=0.2)
     else:
-        return optim.LBFGS([input_img], lr=0.1)
+        return optim.LBFGS([input_img], lr=0.2)
 
 
 
@@ -28,7 +28,7 @@ def run_conf(conf):
     assert style_img.size() == content_img.size(), \
         "we need to import style and content images of the same size"
 
-    cnn = models.vgg19(pretrained=True).features.to(device).eval()
+    cnn = models.vgg19(weights=0).features.to(device).eval()
     cnn_normalization_mean = torch.tensor([0.485, 0.456, 0.406]).to(device)
     cnn_normalization_std = torch.tensor([0.229, 0.224, 0.225]).to(device)
 

@@ -18,9 +18,6 @@ class StyleTransferConfiguration():
     reduceevery: int = 100
 
 
-
-
-
 def config_explore(content_image_path="./data/images/content/kayleigh_beach1_1200x800.jpg",
         style_image_path="./data/images/neural-style/Tate_1200x800.jpg"):
     configs = []
@@ -68,7 +65,7 @@ def config_gen(
         writeevery=5,
         content_layers=('conv_12', 'conv_14'),
         style_layers=('conv_5'),
-        style_weight=10000000,
+        style_weight=100000000,
         content_weight=10,
         optimizer='LBFGS',
         reduceevery=40
@@ -82,7 +79,7 @@ def config_gen(
         writeevery=5,
         content_layers=('conv_12'),
         style_layers=('conv_4'),
-        style_weight=10000000,
+        style_weight=100000000,
         content_weight=10,
         optimizer='LBFGS',
         reduceevery=40
@@ -110,7 +107,7 @@ def config_gen(
         writeevery=5,
         content_layers=[f'conv_{i}' for i in range(3,8)],
         style_layers=[f'conv_{i}' for i in range(4,17)],
-        style_weight=1000000,
+        style_weight=10000000,
         content_weight=10,
         optimizer='LBFGS',
         reduceevery=40
@@ -124,7 +121,7 @@ def config_gen(
         writeevery=5,
         content_layers=[f'conv_{i}' for i in range(4,17)],
         style_layers=[f'conv_{i}' for i in range(4,17)],
-        style_weight=1000000,
+        style_weight=10000000,
         content_weight=10,
         optimizer='LBFGS',
         reduceevery=40
@@ -138,7 +135,7 @@ def config_gen(
         writeevery=5,
         content_layers=('conv_15', 'conv_1'),
         style_layers=('conv_12', 'conv_10'),
-        style_weight=1000000,
+        style_weight=10000000,
         content_weight=10,
         optimizer='LBFGS',
         reduceevery=40
