@@ -36,7 +36,7 @@ def run_conf(conf):
     input_img = content_img.clone()+torch.Tensor(np.random.random(size=content_img.shape)).to(device)*0.1
     input_img=input_img/input_img.max()
 
-    input_img = torch.Tensor(np.random.random(size=content_img.shape)).to(device) * 0.5
+    input_img = torch.Tensor(np.ones(shape=content_img.shape)).to(device) * 0.5
     input_img[:,:,500,500]=1
 
 
