@@ -36,6 +36,11 @@ def run_conf(conf):
     input_img = content_img.clone()+torch.Tensor(np.random.random(size=content_img.shape)).to(device)*0.1
     input_img=input_img/input_img.max()
 
+    input_img = torch.Tensor(np.random.random(size=content_img.shape)).to(device) * 0.5
+    input_img[:,:,500,500]=1
+
+
+
     model, style_losses, content_losses = \
         get_style_model_and_losses(
             device,
@@ -113,7 +118,24 @@ def run_conf(conf):
 #                 content_image_path="./data/images/content/kayleigh_beach1_1200x800.jpg",
 #                 style_image_path="./data/images/neural-style/wood1_1200x800.jpg",
 #                 output_image_name="k_wood1")
-todo_confs = configs.config_explore()
+# todo_confs = configs.config_explore()
+# for conf in todo_confs:
+#     run_conf(conf)
 
-for conf in todo_confs:
-    run_conf(conf)
+
+
+conf1=configs.StyleTransferConfiguration(
+        content_image_path="./data/images/content/kayleigh_beach1_1200x800.jpg",
+        style_image_path="./data/images/neural-style/Tate_1200x800.jpg",
+        output_image_dir="./output",
+        output_image_name=f"something",
+        numiter=2000,
+        writeevery=5,
+        content_layers=('conv_8', 'conv_14'),
+        style_layers=('conv_12'),
+        style_weight=1000000,
+        content_weight=100,
+        optimizer='Adam',
+        reduceevery=100
+    )
+run_conf(conf1)

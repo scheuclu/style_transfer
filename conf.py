@@ -15,6 +15,7 @@ class StyleTransferConfiguration():
     content_layers: tuple = ('conv_2', 'conv_3')
     style_layers: tuple  = ('conv_4', 'conv_5')
     optimizer: str = 'LBFGS'
+    reduceevery: int = 100
 
 
 
