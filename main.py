@@ -107,31 +107,12 @@ def run_conf(conf):
     write_image(input_img, f"{conf.output_image_name}", f"final")
 
 
-# configs = configs.config_gen(
-#         content_image_path="./data/images/content/kayleigh_beach1_1200x800.jpg",
-#         style_image_path="./data/images/neural-style/scream_1200x800.jpg",
-#         output_image_name="k_scream")+configs.config_gen(
-#                 content_image_path="./data/images/content/kayleigh_beach1_1200x800.jpg",
-#                 style_image_path="./data/images/neural-style/wood1_1200x800.jpg",
-#                 output_image_name="k_wood1")
-# todo_confs = configs.config_explore()
-# for conf in todo_confs:
-#     run_conf(conf)
+generated_configs = configs.config_gen(
+        content_image_path="./data/images/content/edritz_1200x800.jpg",
+        style_image_path="./data/images/neural-style/psy1_1200x800.jpg",
+        output_image_name="k_psy")
+
+for conf in generated_configs:
+    run_conf(conf)
 
 
-
-conf1=configs.StyleTransferConfiguration(
-        content_image_path="./data/images/content/kayleigh_beach1_1200x800.jpg",
-        style_image_path="./data/images/neural-style/sturmtruppe_1200x800.jpg",
-        output_image_dir="./output",
-        output_image_name=f"something",
-        numiter=2000,
-        writeevery=5,
-        content_layers=[f'conv_{i}' for i in range(1,17)],
-        style_layers=[f'conv_{i}' for i in range(1,17)],
-        style_weight=1000000,
-        content_weight=100,
-        optimizer='Adam',
-        reduceevery=100
-    )
-run_conf(conf1)
