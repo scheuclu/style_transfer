@@ -16,7 +16,7 @@ def get_input_optimizer(conf, input_img):
     if conf.optimizer == 'Adam':
         return optim.Adam([input_img], lr=0.2)
     else:
-        return optim.LBFGS([input_img], lr=0.2)
+        return optim.LBFGS([input_img], lr=0.05)
 
 
 
@@ -89,7 +89,7 @@ def run_conf(conf):
         # Adaptive learning rate
         if istep % conf.reduceevery == 0:
             # decrease learning rate if the loss increases
-            if total_loss>last_total_loss*0.98:
+            if total_loss>last_total_loss*0.95:
                 for g in optimizer.param_groups:
                     g['lr'] =  g['lr']*0.2
                     print("Reduced learning rate")
