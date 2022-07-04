@@ -33,9 +33,11 @@ def run_conf(conf):
     cnn_normalization_std = torch.tensor([0.229, 0.224, 0.225]).to(device)
 
     # Initialize with a bit of noise
-    ###input_img = content_img.clone().to(device)
+    input_img = content_img.clone().to(device)
     input_img = torch.tensor(np.random.random(size=content_img.shape), dtype=torch.float).to(device)
 
+    input_img = torch.tensor(np.random.random(size=content_img.shape), dtype=torch.float).to(device)+content_img.clone().to(device)*5
+    input_img = input_img/input_img.max()
 
 
     model, style_losses, content_losses = \
@@ -116,7 +118,7 @@ generated_configs = configs.config_gen(
         style_image_path="./data/images/neural-style/cat_1200x800.jpg",
         output_image_name="edritz_cat")
 
-for conf in generated_configs:
+for conf in reversed(generated_configs):
     run_conf(conf)
 
 
