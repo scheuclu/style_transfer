@@ -16,7 +16,7 @@ def get_input_optimizer(conf, input_img):
     if conf.optimizer == 'Adam':
         return optim.Adam([input_img], lr=0.2)
     else:
-        return optim.LBFGS([input_img], lr=0.2)
+        return optim.LBFGS([input_img], lr=1.0)
 
 
 
