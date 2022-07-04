@@ -34,7 +34,7 @@ def run_conf(conf):
 
     # Initialize with a bit of noise
     input_img = content_img.clone().to(device)
-    input_img = torch.tensor(np.random.random(size=input_img.shape)).to(device)
+    input_img = content_img.clone().to(device)*0+torch.tensor(np.random.random(size=input_img.shape)).to(device)
 
 
 
