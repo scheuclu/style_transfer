@@ -33,8 +33,8 @@ def run_conf(conf):
     cnn_normalization_std = torch.tensor([0.229, 0.224, 0.225]).to(device)
 
     # Initialize with a bit of noise
-    input_img = content_img.clone().to(device)
-    input_img = (content_img.clone().to(device)+style_img.clone().to(device))/2
+    ###input_img = content_img.clone().to(device)
+    input_img = torch.tensor(np.random.random(size=content_img.shape), dtype=torch.float).to(device)
 
 
 
