@@ -16,7 +16,7 @@ def get_input_optimizer(conf, input_img):
     if conf.optimizer == 'Adam':
         return optim.Adam([input_img], lr=0.2)
     else:
-        return optim.LBFGS([input_img], lr=0.15)
+        return optim.LBFGS([input_img], lr=0.2)
 
 
 
@@ -86,19 +86,23 @@ def run_conf(conf):
         if istep % conf.writeevery == 0:
             write_image(input_img, f"{conf.output_image_name}", f"step_{istep}")
 
-        # Adaptive learning rate
-        if istep % conf.reduceevery == 0:
-            # decrease learning rate if the loss increases
-            if total_loss>last_total_loss*0.95:
-                for g in optimizer.param_groups:
-                    g['lr'] =  g['lr']*0.2
-                    print("Reduced learning rate")
-            # # Increase learning rate if the loss drops very slowly
-            # if total_loss<last_total_loss and total_loss>last_total_loss*0.99:
-            #     for g in optimizer.param_groups:
-            #         g['lr'] = g['lr'] * 2.0
-            #         print("Increased learning rate")
-            last_total_loss=total_loss
+        for g in optimizer.param_groups:
+            g['lr'] = g['lr'] * 0.97
+            print("Reduced learning rate")
+
+        # # Adaptive learning rate
+        # if istep % conf.reduceevery == 0:
+        #     # decrease learning rate if the loss increases
+        #     if total_loss>last_total_loss*0.95:
+        #         for g in optimizer.param_groups:
+        #             g['lr'] =  g['lr']*0.2
+        #             print("Reduced learning rate")
+        #     # # Increase learning rate if the loss drops very slowly
+        #     # if total_loss<last_total_loss and total_loss>last_total_loss*0.99:
+        #     #     for g in optimizer.param_groups:
+        #     #         g['lr'] = g['lr'] * 2.0
+        #     #         print("Increased learning rate")
+        #     last_total_loss=total_loss
 
     # a last correction...
     with torch.no_grad():
@@ -109,8 +113,8 @@ def run_conf(conf):
 
 generated_configs = configs.config_gen(
         content_image_path="./data/images/content/edritz_1200x800.jpg",
-        style_image_path="./data/images/neural-style/psy1_1200x800.jpg",
-        output_image_name="edritz_psy")
+        style_image_path="./data/images/neural-style/pencil_1200x800.jpeg",
+        output_image_name="edritz_pencil")
 
 for conf in reversed(generated_configs):
     run_conf(conf)
