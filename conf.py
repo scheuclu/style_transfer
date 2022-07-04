@@ -121,8 +121,8 @@ def config_gen(
         writeevery=5,
         content_layers=[f'conv_{i}' for i in range(4,17)],
         style_layers=[f'conv_{i}' for i in range(4,17)],
-        style_weight=10000000,
-        content_weight=10,
+        style_weight=100000000,
+        content_weight=1,
         optimizer='LBFGS',
         reduceevery=40
     )]

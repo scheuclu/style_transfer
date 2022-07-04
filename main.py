@@ -88,7 +88,6 @@ def run_conf(conf):
 
         for g in optimizer.param_groups:
             g['lr'] = g['lr'] * 0.97
-            print("Reduced learning rate")
 
         # # Adaptive learning rate
         # if istep % conf.reduceevery == 0:
